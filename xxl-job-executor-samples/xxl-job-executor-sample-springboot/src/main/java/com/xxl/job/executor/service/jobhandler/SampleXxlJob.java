@@ -40,7 +40,7 @@ public class SampleXxlJob {
 
         for (int i = 0; i < 5; i++) {
             XxlJobHelper.log("beat at:" + i);
-            TimeUnit.SECONDS.sleep(2);
+            TimeUnit.MICROSECONDS.sleep(200);
         }
         // default success
     }
@@ -240,13 +240,15 @@ public class SampleXxlJob {
      */
     @XxlJob(value = "demoJobHandler2", init = "init", destroy = "destroy")
     public void demoJobHandler2() throws Exception {
-        XxlJobHelper.log("XXL-JOB, Hello World.");
+        for (int i = 0; i < 500; i++){
+            XxlJobHelper.log("XXL-JOB, Hello World." + i);
+        }
     }
     public void init(){
-        logger.info("init");
+        System.out.println("init");
     }
     public void destroy(){
-        logger.info("destroy");
+        System.out.println("destroy");
     }
 
 
